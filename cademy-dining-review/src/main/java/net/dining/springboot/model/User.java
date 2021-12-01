@@ -14,7 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     
     @Column(name = "username")
     private String userName;
@@ -36,5 +36,71 @@ public class User {
     
     @Column(name = "dairy_allergy")
     private boolean isDairyAllergy;
+    
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getPostCode() {
+		return postCode;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+
+	public boolean isPeanutAllergy() {
+		return isPeanutAllergy;
+	}
+
+	public void setPeanutAllergy(boolean isPeanutAllergy) {
+		this.isPeanutAllergy = isPeanutAllergy;
+	}
+
+	public boolean isEggAllergy() {
+		return isEggAllergy;
+	}
+
+	public void setEggAllergy(boolean isEggAllergy) {
+		this.isEggAllergy = isEggAllergy;
+	}
+
+	public boolean isDairyAllergy() {
+		return isDairyAllergy;
+	}
+
+	public void setDairyAllergy(boolean isDairyAllergy) {
+		this.isDairyAllergy = isDairyAllergy;
+	}
+    
 
   }

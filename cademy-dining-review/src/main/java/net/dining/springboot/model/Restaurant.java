@@ -22,6 +22,9 @@ public class Restaurant {
     @Column(name = "post_code")
     private String postcode;
     
+    @Column(name = "zip_code")
+    private String zipCode;
+    
     @Column(name = "cuisine")
     private String cuisine;
 }
