@@ -45,6 +45,11 @@ public class DiningReviewController {
     public Iterable<DiningReview> getPendingReviews(){
         return reviewRepository.findByAdminReviewStatus(AdminReviewStatus.PENDING);
     }
+    
+    @GetMapping("/dining-review/approved")
+    public Iterable<DiningReview> getApprovedReviews(){
+        return reviewRepository.findByAdminReviewStatus(AdminReviewStatus.APPROVED);
+    }
 
   
 }
