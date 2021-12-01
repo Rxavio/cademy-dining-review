@@ -3,6 +3,7 @@ package net.dining.springboot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +55,21 @@ public class DiningReviewController {
     @GetMapping("/dining-review/rejected")
     public Iterable<DiningReview> getRejectedReviews(){
         return reviewRepository.findByAdminReviewStatus(AdminReviewStatus.REJECTED);
+    }
+    
+    @GetMapping("/dining-review/approved/{id}")
+    public Iterable<DiningReview> getApprovedReviewById(@PathVariable("id") Long id){
+        return reviewRepository.findByIdAndAdminReviewStatus(id, AdminReviewStatus.APPROVED);
+    }
+    
+    @GetMapping("/dining-review/pending/{id}")
+    public Iterable<DiningReview> getPendingReviewById(@PathVariable("id") Long id){
+        return reviewRepository.findByIdAndAdminReviewStatus(id, AdminReviewStatus.PENDING);
+    }
+    
+    @GetMapping("/dining-review/rejected/{id}")
+    public Iterable<DiningReview> getRejectedReviewById(@PathVariable("id") Long id){
+        return reviewRepository.findByIdAndAdminReviewStatus(id, AdminReviewStatus.REJECTED);
     }
 
   
