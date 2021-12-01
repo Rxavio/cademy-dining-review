@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import net.dining.springboot.model.AdminReviewStatus;
 import net.dining.springboot.model.DiningReview;
 import net.dining.springboot.repository.RestaurantRepository;
 import net.dining.springboot.repository.ReviewRepository;
@@ -38,6 +39,11 @@ public class DiningReviewController {
     public Iterable<DiningReview> getAllDiningReviews(){
         return reviewRepository.findAll();
 
+    }
+    
+    @GetMapping("/dining-review/pending")
+    public Iterable<DiningReview> getPendingReviews(){
+        return reviewRepository.findByAdminReviewStatus(AdminReviewStatus.PENDING);
     }
 
   
