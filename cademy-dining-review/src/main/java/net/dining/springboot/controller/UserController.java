@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.dining.springboot.model.User;
@@ -16,7 +15,6 @@ import net.dining.springboot.repository.UserRepository;
 
 
 @RestController
-//@RequestMapping("api/v1")
 public class UserController {
 //    @Autowired
 //    UserRepository userRepository;
@@ -48,6 +46,11 @@ public class UserController {
         User userToDelete = optionalUser.get();
         this.userRepository.delete(userToDelete);
         return userToDelete;
+    }
+    
+    @GetMapping("/users/{id}")
+    public Optional<User> getUserId(@PathVariable("id") Long id) {
+      return this.userRepository.findById(id);
     }
 
   }
