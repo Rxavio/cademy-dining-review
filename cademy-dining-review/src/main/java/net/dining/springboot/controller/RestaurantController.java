@@ -1,8 +1,11 @@
 package net.dining.springboot.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,4 +32,14 @@ public class RestaurantController {
     public Iterable<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();
     }
+    
+    @GetMapping("/restaurants/{id}")
+    public Optional<Restaurant> getRestaurantBy(@PathVariable("id") Long id) {
+        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
+        if (restaurantOptional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This restaurant does not exist");
+        }
+        return restaurantRepository.findById(id);
+    }
+    
 }
