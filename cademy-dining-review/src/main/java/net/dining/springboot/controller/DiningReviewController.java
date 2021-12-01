@@ -50,6 +50,11 @@ public class DiningReviewController {
     public Iterable<DiningReview> getApprovedReviews(){
         return reviewRepository.findByAdminReviewStatus(AdminReviewStatus.APPROVED);
     }
+    
+    @GetMapping("/dining-review/rejected")
+    public Iterable<DiningReview> getRejectedReviews(){
+        return reviewRepository.findByAdminReviewStatus(AdminReviewStatus.REJECTED);
+    }
 
   
 }
