@@ -1,10 +1,11 @@
 package net.dining.springboot.controller;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -70,6 +71,17 @@ public class DiningReviewController {
     @GetMapping("/dining-review/rejected/{id}")
     public Iterable<DiningReview> getRejectedReviewById(@PathVariable("id") Long id){
         return reviewRepository.findByIdAndAdminReviewStatus(id, AdminReviewStatus.REJECTED);
+    }
+    
+    @PutMapping("/dining-review/{id}/approve")
+    public DiningReview approveReview(@PathVariable("id") Long id){
+        Optional<DiningReview> reviewOptional = reviewRepository.findById(id);
+        if(reviewOptional.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This review does not exist");
+        }
+        DiningReview reviewToApprove = reviewOptional.get();
+        reviewToApprove.setAdminReviewStatus(AdminReviewStatus.APPROVED);
+        return reviewRepository.save(reviewToApprove);
     }
 
   
