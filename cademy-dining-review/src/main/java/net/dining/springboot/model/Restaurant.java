@@ -1,14 +1,8 @@
 package net.dining.springboot.model;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+
 @Table(name = "restaurent")
 public class Restaurant {
 
@@ -27,4 +21,45 @@ public class Restaurant {
     
     @Column(name = "cuisine")
     private String cuisine;
-}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getCuisine() {
+		return cuisine;
+	}
+
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
+	}
+       
+  }
