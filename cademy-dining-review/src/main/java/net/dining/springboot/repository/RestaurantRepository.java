@@ -1,6 +1,7 @@
 package net.dining.springboot.repository;
 
 import org.springframework.data.repository.CrudRepository;
+
 import net.dining.springboot.model.Restaurant;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
     boolean existsByPostcode(String postcode);
     boolean existsByName(String name);
     Optional<Restaurant> findByPostcode(String postcode);
+    public List<Restaurant> findByName(String name);
 }
