@@ -94,6 +94,17 @@ public class DiningReviewController {
         reviewToReject.setAdminReviewStatus(AdminReviewStatus.REJECTED);
         return reviewRepository.save(reviewToReject);
     }
+    
+    @PutMapping("/dining-review/{id}/pending")
+    public DiningReview pendingReview(@PathVariable("id") Long id){
+        Optional<DiningReview> reviewOptional = reviewRepository.findById(id);
+        if(reviewOptional.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This review does not exist");
+        }
+        DiningReview reviewToPending = reviewOptional.get();
+        reviewToPending.setAdminReviewStatus(AdminReviewStatus.PENDING);
+        return reviewRepository.save(reviewToPending);
+    }
 
   
 }
